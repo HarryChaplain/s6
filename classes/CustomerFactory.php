@@ -5,6 +5,7 @@ class CustomerFactory {
     public function __construct(PDO $db){
         $this->db = $db;
     }
+    
 
     public function delete(Customer $c){
         $stmt = $this->db->prepare("
@@ -32,12 +33,14 @@ class CustomerFactory {
         }
 
         $stmt = $this->db->prepare("
-            insert into customer (username)
-            values(:username)
+            insert into S6.customer (username, password, dob)
+            values(:username, :password, :dob)
         ");
 
-        $r = $stmt->execute([
-            'username'  => $c->username
+        $stmt->execute([
+            'username'  => $c->username,
+            'password'  => $c->password,
+            'dob'  => $c->dob
         ]);
         $c->id = $this->db->lastInsertId();
     }

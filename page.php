@@ -51,6 +51,30 @@
           }
         ?>
       </select>
+      </form>
+          <br><br>
+
+          <form action="register.php" method="post">
+        <!--
+        <input type="text" name="username" placeholder="username">
+        <input type="text" name="password" placeholder="password">
+        <input type="submit" name="login">
+        -->
+
+        
+        <br>
+        <input type="text" name="newUsername" placeholder="new username">
+        <input type="text" name="newPassword" placeholder="password">
+        <input type="text" name="newPassword2" placeholder="repeat">
+        <input type="text" name="newDOB" placeholder="dob">
+        <input type="submit" name="register" value="register">
+
+        
+        
+    
+    </form>
+
+
       <br><br>
       <p>Select 6 players</p>
        <select name="p1">

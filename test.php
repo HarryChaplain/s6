@@ -36,7 +36,17 @@
         <div id="team-right"> Team 2</div>
     </div>
 
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER[" PHP_SELF "]);?>" <br><br> Player Selections:
+    <form method="post">
+        <input type="text" name="username">
+        <input type="text" name="password">
+        <input type="text" name="newUsername">
+        <input type="text" name="newPassword">
+        <input type="text" name="newPassword2">
+        <input type="text" name="newDOB">
+    
+    </form>
+
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER[" PHP_SELF "]);?>" <br/><br> Player Selections:
         <input type="text" name="p1">
         <input type="text" name="p2">
         <input type="text" name="p3">
