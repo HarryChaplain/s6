@@ -15,12 +15,18 @@ function getDB(){
     return $pdo;
 }
 
-function render($view, $params = []){
-    extract($params);
-    include __DIR__."/". $view.'.php';
-}
+// $cf->save($customer);
 
-render('page', [
-    'page' => $page
-]);
-?>
+// $customer->username = "Barry";
+// $pf->save($customer);
+
+ // $customers = $cf->byUsername("Brown");
+
+// foreach ($customers as $cust){
+//     echo $cust->username . " has an ID of: " . $cust->id.PHP_EOL;
+    //$cf->delete($cust);
+// }
+
+
+
+ ?>
