@@ -79,24 +79,42 @@ class BetFactory {
 
     public function byCustId($custid){
         $r = $this->db->prepare("
-            select
-              player.name
-            from bet
-            join betSelection on (betSelection.betid = bet.betid)
-            join player on (player.playerid = betSelection.playerid)
-            where customerid = :id;
+        select
+          player.playerid as playerid,
+          player.name,
+          betSelection.didScore,
+          bet.betid,
+          bet.datePlaced,
+          betSelection.betSelectionid as betSelectionid,
+          bet.customerid as customerid,
+          bet.betWeekid
+        from bet
+        join betSelection on (betSelection.betid = bet.betid)
+        join player on (player.playerid = betSelection.playerid)
+        where customerid = :id;
         ");
 
         $r->execute(['id' => $custid]);
 
-        $players = [];
+        $bets = [];
         foreach ($r as $row){
-            $b = new Player();
-            $b->fromArray($row);
-            $players[] = $b;
+
+            $p = new Player();
+            $p->fromArray($row);
+
+            $bs = new BetSelection();
+            $bs->fromArray($row);
+            $bs->player = $p;
+
+            if (!isset($bets[$row['betid']])){
+              $bets[$row['betid']] = new Bet();
+              $bets[$row['betid']]->fromArray($row);
+            }
+            $bets[$row['betid']]->selections[] = $bs;
         }
 
-        return $players;
+
+        return $bets;
     }
 
     public function getAll(){

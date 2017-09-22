@@ -3,6 +3,7 @@ class BetSelection {
     public $id;
     public $betId;
     public $playerId;
+    public $player;
     public $didScore;
 
 

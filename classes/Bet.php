@@ -5,11 +5,13 @@ class Bet {
     public $customerId;
     public $datePlaced;
     public $betWeekId;
+    public $selections;
 
     public function __construct($customerId = null, $betWeekId = null){
         $this->customerId = $customerId;
         $this->datePlaced = date("Y-m-d");
         $this->betWeekId = $betWeekId;
+        $this->selections = [];
     }
 
     public function fromArray(array $a){
