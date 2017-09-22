@@ -125,7 +125,9 @@ DROP TABLE IF EXISTS `player`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `player` (
   `playerid` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
+  `lastname` varchar(100) DEFAULT NULL,
+  `firstname` varchar(100) DEFAULT NULL,
+  `club` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`playerid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -136,7 +138,20 @@ CREATE TABLE `player` (
 
 LOCK TABLES `player` WRITE;
 /*!40000 ALTER TABLE `player` DISABLE KEYS */;
-INSERT INTO `player` VALUES (1,'Tom'),(2,'Dan'),(3,'Luke'),(4,'Harry'),(5,'Bob'),(7,'Emily'),(8,'Howard');
+INSERT INTO `player` VALUES
+(0, 'Afobe', 'Benik', 'AFC Bournemouth'),
+(1,'Defoe', 'Jermain', 'AFC Bournemouth'),
+(2, 'King', 'Joshua', 'AFC Bournemouth'),
+(3, 'Wilson', 'Callum', 'AFC Bournemouth'),
+(4, 'Giroud', 'Olivier', 'Arsenal'),
+(5, 'Sánchez', 'Alexis', 'Arsenal'),
+(6, 'Walcott', 'Theo', 'Arsenal'),
+(7, 'Welbeck', 'Danny', 'Arsenal'),
+(8, 'Barnes', 'Ashley', 'Burnley'),
+(9, 'Wells', 'Nahki', 'Burnley'),
+(10, 'Wood', 'Chris', 'Burnley');
+
+
 /*!40000 ALTER TABLE `player` ENABLE KEYS */;
 UNLOCK TABLES;
 
