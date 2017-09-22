@@ -32,12 +32,14 @@ class PlayerFactory {
         }
 
         $stmt = $this->db->prepare("
-            insert into player (name)
-            values(:name)
+            insert into player (lastname, firstname, club)
+            values(:lastname, :firstname, :club)
         ");
 
         $r = $stmt->execute([
-            'name'  => $p->name
+            'lastname'  => $p->lastname,
+            'firstname'  => $p->firstname,
+            'club'  => $p->club
         ]);
         $p->id = $this->db->lastInsertId();
     }
@@ -45,21 +47,21 @@ class PlayerFactory {
     public function update(Player $p){
         $stmt = $this->db->prepare("
             update player set
-                name = :name
+                lastname = :lastname
             where playerid = :id
         ");
         return $stmt->execute([
-            'name'  => $c->name,
+            'lastname'  => $c->lastname,
             'id'    => $c->id
         ]);
     }
 
     public function byName($name){
         $r = $this->db->prepare(
-            "select playerid, name from player where name = :name"
+            "select playerid, lastname from player where lastname = :lastname"
         );
 
-        $r->execute(['name' => $name]);
+        $r->execute(['lastname' => $lastname]);
 
         $customers = [];
         foreach ($r as $row){
