@@ -36,20 +36,7 @@
        <input type="text" name="username" value="">
        <input type="submit"/>
      </form>
-     <br>
-     <form action="register.php" method="post">
-   <!--
-   <input type="text" name="username" placeholder="username">
-   <input type="text" name="password" placeholder="password">
-   <input type="submit" name="login">
- -->
-       <input type="text" name="newUsername" placeholder="new username">
-       <input type="text" name="newPassword" placeholder="password">
-       <input type="text" name="newPassword2" placeholder="repeat">
-       <input type="text" name="newDOB" placeholder="dob">
-       <input type="submit" name="register" value="register">
-    </form>
-    <br>
+  
 
      <h4>Bets:</h4>
      <form action="placeBet.php" method="post">

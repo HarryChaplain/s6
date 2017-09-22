@@ -1,8 +1,6 @@
-<pre>
-
 <?php
 
-var_dump($_POST); #information from <form action="register.php" method="post">
+//var_dump($_POST); #information from <form action="register.php" method="post">
 
 include 'init.php';
 
@@ -14,21 +12,19 @@ $nu = new Customer(
 );
 
 if ($cm->byUsername($nu->username)) {
-    echo "username already in use";
+    echo "<h3>username already in use</h3>";
 } else {
     if ($nu->isOldEnough($nu->dob)) {
-        echo "is old enough \n";
-        
+
         if ($nu->validPassword($_POST['newPassword2'])) {
-            echo "password good - saving \n";
-            var_dump ($nu);
             $cm->save($nu);
+            header('Location: /index.php');
         } else {
-            echo "password fail \n";
+            echo "<h3>Password not valid</h3>";
         }
 
     } else {
-        echo "age fail \n";
+        echo "<h3>Not old enough</h3>";
     }
 }
 
