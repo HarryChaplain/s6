@@ -34,13 +34,13 @@ class Customer {
     }
 
     function validPassword($repeatedPass) {
-        
+
         #passwords must match
         if ($this->password != $repeatedPass){
             echo "passwords do not match".PHP_EOL;
             return False;
         }
-        
+
         #passwords must be greater than 10 characters long
         if (strlen($this->password) >= 10) {
             #password
@@ -48,8 +48,8 @@ class Customer {
             echo "password not long enough".PHP_EOL;
             return False;
         }
-    
-        $this->password = password_hash($password, PASSWORD_DEFAULT);
+
+        $this->password = password_hash($this->password, PASSWORD_DEFAULT);
             return True;
     }
 }

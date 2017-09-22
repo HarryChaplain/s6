@@ -36,13 +36,13 @@
        <input type="text" name="username" value="">
        <input type="submit"/>
      </form>
-  
+
 
      <h4>Bets:</h4>
      <form action="placeBet.php" method="post">
        <p>What customer are you?</p>
-       <select name="cust">
-          <option selected="selected">Choose one</option>
+       <select name="cust" required>
+          <option selected="selected" value="">Choose one</option>
         <?php
           foreach ($customers as $c){
         ?>
@@ -53,8 +53,8 @@
       </select>
       <br>
       <p>For what Week?</p>
-      <select name="week">
-         <option selected="selected">Choose one</option>
+      <select name="week" required>
+         <option selected="selected" value="">Choose one</option>
          <option value="1">1</option>
          <option value="2">2</option>
          <option value="3">3</option>
@@ -67,8 +67,8 @@
       <br>
 
       <p>Select 6 players</p>
-       <select name="p1">
-          <option selected="selected">Choose one</option>
+       <select name="p1" required>
+          <option selected="selected" value="">Choose one</option>
         <?php
           foreach ($players as $p){
         ?>
@@ -77,8 +77,8 @@
           }
         ?>
       </select>
-      <select name="p2">
-         <option selected="selected">Choose one</option>
+      <select name="p2" required>
+         <option selected="selected" value="">Choose one</option>
        <?php
          foreach ($players as $p){
        ?>
@@ -87,8 +87,8 @@
          }
        ?>
       </select>
-      <select name="p3">
-         <option selected="selected">Choose one</option>
+      <select name="p3" required>
+         <option selected="selected" value="">Choose one</option>
        <?php
          foreach ($players as $p){
        ?>
@@ -97,8 +97,8 @@
          }
        ?>
       </select>
-      <select name="p4">
-         <option selected="selected">Choose one</option>
+      <select name="p4" required>
+         <option selected="selected" value="">Choose one</option>
        <?php
          foreach ($players as $p){
        ?>
@@ -107,8 +107,8 @@
          }
        ?>
      </select>
-     <select name="p5">
-        <option selected="selected">Choose one</option>
+     <select name="p5" required>
+        <option selected="selected" value="">Choose one</option>
       <?php
         foreach ($players as $p){
       ?>
@@ -117,8 +117,8 @@
         }
       ?>
      </select>
-     <select name="p6">
-        <option selected="selected">Choose one</option>
+     <select name="p6" required>
+        <option selected="selected" value="">Choose one</option>
       <?php
         foreach ($players as $p){
       ?>

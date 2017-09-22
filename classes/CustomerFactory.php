@@ -5,7 +5,7 @@ class CustomerFactory {
     public function __construct(PDO $db){
         $this->db = $db;
     }
-    
+
 
     public function delete(Customer $c){
         $stmt = $this->db->prepare("
@@ -44,28 +44,23 @@ class CustomerFactory {
         ]);
         $c->id = $this->db->lastInsertId();
     }
-    
+
     public function checkLogin($username, $password){
         $r = $this->db->prepare(
             "select customerid, username, password from customer where username = :username"
         );
 
         $r->execute([
-            'username' => $username,
-            'password' => $password
+            'username' => $username
             ]);
 
-        $userCredentials= [];
-        foreach ($r as $row){
-            $c = new Customer();
-            $c->fromArray($row);
-            $userCredentials[] = $credentials;
-        }
+          $hash = $r->fetch()['password'];
 
         #unhash password and check what the user typed is the same
-        if (password_verify($credentials, $hash)) {
-            $passwordMatch = True;
-        } else { $passwordMatch = False; }
+        if (password_verify($password, $hash)){
+            return True;
+        }
+        return False;
     }
 
     public function update(Customer $c){

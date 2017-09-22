@@ -1,22 +1,24 @@
 <?php
 
+include 'init.php';
+
 $cm = new CustomerFactory(getDB());
 $user = new Customer(
     $_POST['username'],
     $_POST['password']
 );
-    
-    if (!$cm->byUsername($username, $password)) {
+
+    if (!$cm->byUsername($_POST['username'])) {
         echo "username not found, maybe register \n \n";
     } else {
-        if ($user->checkLogin($_POST['username'], $_POST['password' ])) {
-                echo "password looks good \n";
-                var_dump ($nu);
+        if ($cm->checkLogin($_POST['username'], $_POST['password'])) {
+                header('Location: /index.php');
+              //  var_dump ($nu);
             } else {
                 echo "password incorrect \n";
             }
     }
-    
+
     function login($username) {
         $usernames = $this->db->prepare('select username from customer where username = ?');
         $usernames->execute(array($username));
