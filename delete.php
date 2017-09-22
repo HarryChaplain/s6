@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <?php
+<?php
 
     include 'init.php';
 
@@ -14,9 +7,6 @@
     $id = $_GET['id'];
 
     $cf->deleteById($id);
-    echo "<h1>User $id deleted</h1>";
-
+    
+    header('Location: /index.php');
      ?>
-     <a href="index.php">Home</a>
-  </body>
-</html>

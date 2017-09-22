@@ -23,7 +23,7 @@
     $customers = $cf->getAll();
 
     foreach ($customers as $cust){
-        echo "<p>" .  $cust->username . " has an ID of: " . $cust->id.PHP_EOL  . "<a href='delete.php?id=" . $cust->id . "'>Delete</a>". "</p>"  ;
+        echo "<p>" .  $cust->username . " has an ID of: " . $cust->id.PHP_EOL  . "<a href='delete.php?id=" . $cust->id . "'>Delete</a>" . "<a>  </a>" . "<a href='getBet.php?id=" . $cust->id . "'>View Bet</a>". "</p>" ;
         //$cf->delete($cust);
     }
 
@@ -51,7 +51,20 @@
           }
         ?>
       </select>
-      <br><br>
+      <br>
+      <p>For what Week?</p>
+      <select name="week">
+         <option selected="selected">Choose one</option>
+         <option value="1">1</option>
+         <option value="2">2</option>
+         <option value="3">3</option>
+         <option value="4">4</option>
+         <option value="5">5</option>
+         <option value="6">6</option>
+         <option value="7">7</option>
+         <option value="8">8</option>
+     </select>
+      <br>
       <p>Select 6 players</p>
        <select name="p1">
           <option selected="selected">Choose one</option>
