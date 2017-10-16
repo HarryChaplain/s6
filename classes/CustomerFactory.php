@@ -77,7 +77,7 @@ class CustomerFactory {
 
     public function byUsername($username){
         $r = $this->db->prepare(
-            "select customerid, username from customer where username = :username"
+            "select customerid, username, dob from customer where username = :username"
         );
 
         $r->execute(['username' => $username]);

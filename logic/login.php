@@ -1,6 +1,6 @@
 <?php
 
-include 'init.php';
+include '../init.php';
 
 $cm = new CustomerFactory(getDB());
 $user = new Customer(
@@ -12,7 +12,13 @@ $user = new Customer(
         echo "username not found, maybe register \n \n";
     } else {
         if ($cm->checkLogin($_POST['username'], $_POST['password'])) {
-                header('Location: /index.php');
+                $currentUser = $cm->byUsername($_POST['username'])[0];
+                session_start();
+                $_SESSION["id"] = $currentUser->id;
+                $_SESSION["username"] = $currentUser->username;
+                $_SESSION["dob"] = $currentUser->dob;
+
+                header('Location: ../index.php');
               //  var_dump ($nu);
             } else {
                 echo "password incorrect \n";
