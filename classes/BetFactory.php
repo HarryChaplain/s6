@@ -49,13 +49,14 @@ class BetFactory {
 
     public function saveSelection(Bet $b, BetSelection $bs){
       $stmt = $this->db->prepare("
-          insert into betSelection (betid, playerid, didScore)
-          values(:betid, :playerid, :didScore)
+          insert into betSelection (betid, playerid, didScore, betWeekid)
+          values(:betid, :playerid, :didScore, :betWeekid)
       ");
       $r = $stmt->execute([
           'betid'  => $bs->betId,
           'playerid'  => $bs->playerId,
-          'didScore'  => $bs->didScore
+          'didScore'  => $bs->didScore,
+          'betWeekid'  => $b->betWeekId
       ]);
     }
 

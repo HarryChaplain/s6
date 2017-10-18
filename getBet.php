@@ -37,6 +37,9 @@
               <a class="nav-link" href=<?php echo "getBet.php?id=" . $_SESSION['id'];  ?>>My Bets</a>
             </li>
           </li>
+            <a class="nav-link" href="getPlayers.php">All Players</a>
+          </li>
+          </li>
           <?php
       				if (isset($_SESSION['username'])){
       					include('includes/session-logout.inc.php');
@@ -69,24 +72,25 @@
                 echo "<p> Placed on: ".$b->datePlaced ." for bet week $b->betWeekId</p>";
                 echo "<h3> Selections: </h3>";
                 foreach ($b->selections as $bs) {
-                  echo "<p>" . $bs->player->name ;
-                  if ($bs->player->didScore == 0) {
-                    echo " has not scored";
-                  }elseif ($bs->player->didScore == 1) {
-                    echo "has scored";
+
+                  echo "<img src='playerHeadshots/". $bs->player->name.".png' width='250px' hieght='250px'>";
+                  if ($bs->didScore == 0) {
+                    echo "<p>" . $bs->player->name ;
+                    echo "<font color='FF0000'> has not scored</font>";
+                  }elseif ($bs->didScore == 1) {
+                    echo "<p>" . $bs->player->name ;
+                    echo "<font color='00FF00'> has scored</font>";
                   }
 
 
                   echo "</p>";
                 }
-                echo "<br>";
+                echo "<br> <hr>";
               }
 
               if (!$bets) {
                 echo "<h3> You have not placed any bets</h3>";
               }
-
-              //var_dump($bets);
            ?>
 
         </div>

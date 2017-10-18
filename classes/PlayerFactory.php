@@ -87,6 +87,34 @@ class PlayerFactory {
 
         return $players;
     }
+
+    public function getAllScorers($week){
+      $r = $this->db->prepare(
+          "select playerid from playerWeek where weekid = :weekid"
+      );
+
+      $r->execute(['weekid' => $week]);
+
+
+        $playerIdArray = [];
+        foreach ($r as $row){
+          array_push($playerIdArray, $row['playerid']) ;
+        }
+        return $playerIdArray;
+    }
+
+    public function getById($playerId){
+      $r = $this->db->prepare(
+          "select name from player where playerid = :playerid"
+      );
+
+      $r->execute(['playerid' => $playerId]);
+
+      foreach ($r as $row){
+        return $row['name'];
+      }
+
+    }
 }
 
  ?>

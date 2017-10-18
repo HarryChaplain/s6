@@ -40,6 +40,9 @@
               <a class="nav-link" href=<?php echo "getBet.php?id=" . $_SESSION['id'];  ?>>My Bets</a>
             </li>
           </li>
+            <a class="nav-link" href="getPlayers.php">All Players</a>
+          </li>
+          </li>
           <?php
       				if (isset($_SESSION['username'])){
       					include('includes/session-logout.inc.php');
@@ -165,12 +168,33 @@
 
                 <input class="btn btn-primary" type="submit" name="" value="Place Bet">
               </form>
+              <br><hr>
+
+              <form class="" action="getScorers.php" method="get">
+                <h4>Search Scorers by Week:</h4>
+                <select class="form-control" name="week" required>
+                   <option selected="selected" value="">Choose one</option>
+                   <option value="1">1</option>
+                   <option value="2">2</option>
+                   <option value="3">3</option>
+                   <option value="4">4</option>
+                   <option value="5">5</option>
+                   <option value="6">6</option>
+                   <option value="7">7</option>
+                   <option value="8">8</option>
+               </select>
+               <br>
+               <input class="btn btn-primary" type="submit" name="" value="Search">
+              </form>
               </div>
+
         <?php
            }else {
              echo "<br><h3> Please sign in to place a bet.</h3>";
            }
          ?>
+
+
 
 
   </div>
