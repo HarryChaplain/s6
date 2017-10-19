@@ -82,7 +82,7 @@
          <?php
            foreach ($players as $p){
          ?>
-           <input type="checkbox" name="playerid[]" value="<?php echo $p->id; ?>"><?php echo $p->name; ?><br>
+           <img src="playerHeadshots/<?php echo $p->name; ?>.png" width="100px" height="100px" ><label><?php echo $p->name; ?></label><input type="checkbox" name="playerid[]" id="checkbox" value="<?php echo $p->id; ?>"><br>
          <?php
            }
          ?>

@@ -13,10 +13,13 @@
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/dd.css" />
 
     <!-- Custom styles for this template -->
     <link href="css/logo-nav.css" rel="stylesheet">
 
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/msdropdown/jquery.dd.min.js" type="text/javascript"></script>
   </head>
 
   <body>
@@ -96,82 +99,82 @@
                     <option value="7">7</option>
                     <option value="8">8</option>
                 </select>
-                 <br>
+                 <br><br>
 
                  <p>Select 6 players</p>
-                  <select class="form-control" name="p1" required>
+                  <select class="form-control"  required name="p2">
                      <option selected="selected" value="">Choose one</option>
                    <?php
                      foreach ($players as $p){
                    ?>
-                     <option value="<?php echo $p->id; ?>"><?php echo $p->name; ?></option>
+                     <option value="<?php echo $p->id; ?>" data-image="playerHeadshots/<?php echo $p->name; ?>.png" width="100px"><?php echo $p->name; ?></option>
                    <?php
                      }
                    ?>
                  </select>
-                 <br>
+                 <br><br>
                  <select class="form-control" name="p2" required>
                     <option selected="selected" value="">Choose one</option>
                   <?php
                     foreach ($players as $p){
                   ?>
-                    <option value="<?php echo $p->id; ?>"><?php echo $p->name; ?></option>
+                    <option value="<?php echo $p->id; ?>" data-image="playerHeadshots/<?php echo $p->name; ?>.png" ><?php echo $p->name; ?></option>
                   <?php
                     }
                   ?>
                  </select>
-                 <br>
+                 <br><br>
                  <select  class="form-control" name="p3" required>
                     <option selected="selected" value="">Choose one</option>
                   <?php
                     foreach ($players as $p){
                   ?>
-                    <option  class="form-control" value="<?php echo $p->id; ?>"><?php echo $p->name; ?></option>
+                    <option value="<?php echo $p->id; ?>" data-image="playerHeadshots/<?php echo $p->name; ?>.png" ><?php echo $p->name; ?></option>
                   <?php
                     }
                   ?>
                  </select>
-                 <br>
+                 <br><br>
                  <select  class="form-control" name="p4" required>
                     <option selected="selected" value="">Choose one</option>
                   <?php
                     foreach ($players as $p){
                   ?>
-                    <option value="<?php echo $p->id; ?>"><?php echo $p->name; ?></option>
+                    <option value="<?php echo $p->id; ?>" data-image="playerHeadshots/<?php echo $p->name; ?>.png" ><?php echo $p->name; ?></option>
                   <?php
                     }
                   ?>
                 </select>
-                <br>
+                <br><br>
                 <select class="form-control" name="p5" required>
                    <option selected="selected" value="">Choose one</option>
                  <?php
                    foreach ($players as $p){
                  ?>
-                   <option value="<?php echo $p->id; ?>"><?php echo $p->name; ?></option>
+                   <option value="<?php echo $p->id; ?>" data-image="playerHeadshots/<?php echo $p->name; ?>.png" ><?php echo $p->name; ?></option>
                  <?php
                    }
                  ?>
                 </select>
-                <br>
+                <br><br>
                 <select class="form-control" name="p6" required>
-                   <option selected="selected" value="">Choose one</option>
+                   <option selected="selected" value="" >Choose one</option>
                  <?php
                    foreach ($players as $p){
                  ?>
-                   <option value="<?php echo $p->id; ?>"><?php echo $p->name; ?></option>
+                   <option value="<?php echo $p->id; ?>" data-image="playerHeadshots/<?php echo $p->name; ?>.png" ><?php echo $p->name; ?></option>
                  <?php
                    }
                  ?>
                 </select>
-                <br>
+                <br><br>
 
                 <input class="btn btn-primary" type="submit" name="" value="Place Bet">
               </form>
               <br><hr>
 
               <form class="" action="getScorers.php" method="get">
-                <h4>Search Scorers by Week:</h4>
+                <h4>Search Scorers by Week:</h4><br>
                 <select class="form-control" name="week" required>
                    <option selected="selected" value="">Choose one</option>
                    <option value="1">1</option>
@@ -183,7 +186,7 @@
                    <option value="7">7</option>
                    <option value="8">8</option>
                </select>
-               <br>
+               <br><br>
                <input class="btn btn-primary" type="submit" name="" value="Search">
               </form>
               </div>
@@ -194,7 +197,15 @@
            }
          ?>
 
-
+       <script language="javascript">
+         $(document).ready(function(e) {
+           try {
+             $("body select").msDropDown();
+           } catch(e) {
+             alert(e.message);
+           }
+         });
+       </script>
 
 
   </div>
@@ -203,7 +214,7 @@
     <!-- /.container -->
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
     <script src="vendor/popper/popper.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
