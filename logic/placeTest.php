@@ -42,8 +42,10 @@
           $bet = new Bet($_SESSION['id'],  $_POST['week']);
           $bf->save($bet);
 
-          if (count($playerArray) !== count(array_unique($playerArray)) ||count($playerArray) < 6 ) {
-              echo "<h3>You must select six unique players</h3><br>";
+          var_dump($_POST['playerid']);
+
+          if (count($playerArray) !== count(array_unique($playerArray))) {
+              echo "<h3>You cant select the same player more than once</h3><br>";
               echo "<a class='btn btn-primary' href='../index.php'>Back</a>";
           }else {
             foreach ($playerArray as $player) {
@@ -56,7 +58,6 @@
             echo "<a class='btn btn-primary' href='../index.php'>Back</a>";
 
          }
-
 
 
 

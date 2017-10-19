@@ -20,9 +20,20 @@
 
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/msdropdown/jquery.dd.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="image-picker/image-picker.min.js"></script>
+    <link href="image-picker/image-picker.css" rel="stylesheet"/>
+    <style media="screen">
+    .vertical-center {
+      align-items: center;
+      display: flex;
+      min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+      min-height: 100vh;
+}
+    </style>
   </head>
 
-  <body>
+  <body >
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -60,136 +71,92 @@
     </nav>
 
     <!-- Page Content -->
-    <div class="container">
+    <div align="center">
+      <div  class="container" align="center">
 
-      <?php
+        <?php
 
-      include 'init.php';
+        include 'init.php';
 
-      echo "<h3> Welcome ". $_SESSION['username'] . "</h3>";
+        echo "<h3> Welcome ". $_SESSION['username'] . "</h3>";
 
-      $db = getDB();
-      $cf = new CustomerFactory($db);
+        $db = getDB();
+        $cf = new CustomerFactory($db);
 
-      $pf = new PlayerFactory($db);
-      $players = $pf->getAll();
-      // $cf->save($customer);
-      //
-      // $customer->username = "Barry";
-      // $pf->save($customer);
+        $pf = new PlayerFactory($db);
+        $players = $pf->getAll();
+        // $cf->save($customer);
+        //
+        // $customer->username = "Barry";
+        // $pf->save($customer);
 
-       ?>
-       <?php
-           if (isset($_SESSION['username'])){
-              ?>
-              <div class="col">
-                <br>
+         ?>
+         <?php
+             if (isset($_SESSION['username'])){
+                ?>
+                  <br>
+                  <br>
+                  <div >
+                    <h4>Place a Bets:</h4>
+                    <div class="vertical-center" >
+                      <form action="/logic/placeBet.php" method="post">
+                       <p>For what Week?</p>
+                       <select class="form-control" name="week" required>
+                          <option selected="selected" value="">Choose one</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                      </select>
+                       <br><br>
 
-                <h4>Place a Bets:</h4>
-                <form action="/logic/placeBet.php" method="post">
-                 <p>For what Week?</p>
-                 <select class="form-control" name="week" required>
-                    <option selected="selected" value="">Choose one</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                </select>
-                 <br><br>
+                       <p>Select 6 players</p>
+                        <select multiple="multiple" id="selector" data-limit="6" class="vertical-center" name="playerid[]" >
 
-                 <p>Select 6 players</p>
-                  <select class="form-control"  required name="p2">
-                     <option selected="selected" value="">Choose one</option>
-                   <?php
-                     foreach ($players as $p){
-                   ?>
-                     <option value="<?php echo $p->id; ?>" data-image="playerHeadshots/<?php echo $p->name; ?>.png" width="100px"><?php echo $p->name; ?></option>
-                   <?php
-                     }
-                   ?>
-                 </select>
-                 <br><br>
-                 <select class="form-control" name="p2" required>
-                    <option selected="selected" value="">Choose one</option>
-                  <?php
-                    foreach ($players as $p){
-                  ?>
-                    <option value="<?php echo $p->id; ?>" data-image="playerHeadshots/<?php echo $p->name; ?>.png" ><?php echo $p->name; ?></option>
-                  <?php
-                    }
-                  ?>
-                 </select>
-                 <br><br>
-                 <select  class="form-control" name="p3" required>
-                    <option selected="selected" value="">Choose one</option>
-                  <?php
-                    foreach ($players as $p){
-                  ?>
-                    <option value="<?php echo $p->id; ?>" data-image="playerHeadshots/<?php echo $p->name; ?>.png" ><?php echo $p->name; ?></option>
-                  <?php
-                    }
-                  ?>
-                 </select>
-                 <br><br>
-                 <select  class="form-control" name="p4" required>
-                    <option selected="selected" value="">Choose one</option>
-                  <?php
-                    foreach ($players as $p){
-                  ?>
-                    <option value="<?php echo $p->id; ?>" data-image="playerHeadshots/<?php echo $p->name; ?>.png" ><?php echo $p->name; ?></option>
-                  <?php
-                    }
-                  ?>
-                </select>
-                <br><br>
-                <select class="form-control" name="p5" required>
-                   <option selected="selected" value="">Choose one</option>
-                 <?php
-                   foreach ($players as $p){
-                 ?>
-                   <option value="<?php echo $p->id; ?>" data-image="playerHeadshots/<?php echo $p->name; ?>.png" ><?php echo $p->name; ?></option>
-                 <?php
-                   }
-                 ?>
-                </select>
-                <br><br>
-                <select class="form-control" name="p6" required>
-                   <option selected="selected" value="" >Choose one</option>
-                 <?php
-                   foreach ($players as $p){
-                 ?>
-                   <option value="<?php echo $p->id; ?>" data-image="playerHeadshots/<?php echo $p->name; ?>.png" ><?php echo $p->name; ?></option>
-                 <?php
-                   }
-                 ?>
-                </select>
-                <br><br>
+                         <?php
+                           foreach ($players as $p){
+                         ?>
+                           <option value="<?php echo $p->id; ?>"  data-img-src="playerHeadshots/<?php echo $p->name; ?>.png" ><?php echo $p->name; ?></option>
+                         <?php
+                           }
+                         ?>
+                       </select>
 
-                <input class="btn btn-primary" type="submit" name="" value="Place Bet">
-              </form>
-              <br><hr>
 
-              <form class="" action="getScorers.php" method="get">
-                <h4>Search Scorers by Week:</h4><br>
-                <select class="form-control" name="week" required>
-                   <option selected="selected" value="">Choose one</option>
-                   <option value="1">1</option>
-                   <option value="2">2</option>
-                   <option value="3">3</option>
-                   <option value="4">4</option>
-                   <option value="5">5</option>
-                   <option value="6">6</option>
-                   <option value="7">7</option>
-                   <option value="8">8</option>
-               </select>
-               <br><br>
-               <input class="btn btn-primary" type="submit" name="" value="Search">
-              </form>
-              </div>
+                      <input class="btn btn-primary" type="submit" name="" value="Place Bet">
+                    </form>
+                    </div>
+
+
+                  </div>
+
+
+                  <br><hr>
+
+                  <form class="" action="getScorers.php" method="get">
+                    <h4>Search Scorers by Week:</h4><br>
+                    <select class="form-control" name="week" required>
+                       <option selected="selected" value="">Choose one</option>
+                       <option value="1">1</option>
+                       <option value="2">2</option>
+                       <option value="3">3</option>
+                       <option value="4">4</option>
+                       <option value="5">5</option>
+                       <option value="6">6</option>
+                       <option value="7">7</option>
+                       <option value="8">8</option>
+                   </select>
+                   <br>
+                   <input class="btn btn-primary" type="submit" name="" value="Search">
+                 </form>
+
+                </div>
+
+    </div>
 
         <?php
            }else {
@@ -198,17 +165,18 @@
          ?>
 
        <script language="javascript">
-         $(document).ready(function(e) {
-           try {
-             $("body select").msDropDown();
-           } catch(e) {
-             alert(e.message);
-           }
-         });
+       $(document).ready(function(e) {
+         try {
+          $("#selector").imagepicker({
+            show_label: true
+          });
+         } catch(e) {
+           alert(e.message);
+         }
+       });
        </script>
 
 
-  </div>
 
 
     <!-- /.container -->
@@ -218,6 +186,6 @@
     <script src="vendor/popper/popper.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-  </body>
+  </body><br>
 
 </html>

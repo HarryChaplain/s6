@@ -3,7 +3,7 @@
  <html>
    <head>
      <meta charset="utf-8">
-     <title>Set Scorer</title>
+     <title>Super Striker</title>
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
      <meta name="description" content="">
@@ -14,6 +14,16 @@
 
      <!-- Custom styles for this template -->
      <link href="../css/logo-nav.css" rel="stylesheet">
+     <style media="screen">
+       .grid{
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: center;
+       }
+       .item{
+         padding: 25px;
+       }
+     </style>
 
    </head>
    <body>
@@ -51,9 +61,7 @@
          </div>
        </div>
      </nav>
-     <div class="container">
-       <div class="row">
-         <div class="col-10">
+     <div class="container" align="center">
 
            <?php
 
@@ -64,24 +72,27 @@
              $playerArray = [];
              $week = $_GET['week'];
 
-             echo "<h2>List of All Players</h2><br>";
+             echo "<h2>List of All Players</h2>";
+             echo "<div class=\"grid\">";
 
              $players = $pf->getAll();
 
              if (count($players) <=0) {
 
-               echo "<br><br><h3>No players</h3>";
+               echo "<h3>No players</h3>";
              }else {
                foreach ($players as $p) {
 
-                 echo "<hr> <h4>" . $p->name . "</h4>";
-                 echo "<img src='playerHeadshots/". $p->name.".png' width='250px' hieght='250px'>  <br>";
+                 echo "<div class=\"item\">";
+                 echo "<div> <h4>" . $p->name . "</h4></div>";
+                 echo "<div><img src='playerHeadshots/". $p->name.".png' width='250px' hieght='250px'> </div>";
+                 echo "</div>";
                }
              }
+             echo "</div>";
             ?>
          </div>
-       </div>
-     </div>
+
 
    </body>
  </html>

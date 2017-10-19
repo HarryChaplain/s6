@@ -14,6 +14,16 @@
 
      <!-- Custom styles for this template -->
      <link href="../css/logo-nav.css" rel="stylesheet">
+     <style media="screen">
+       .grid{
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: center;
+       }
+       .item{
+         padding: 25px;
+       }
+     </style>
 
    </head>
    <body>
@@ -50,9 +60,7 @@
          </div>
        </div>
      </nav>
-     <div class="container">
-       <div class="row">
-         <div class="col-10">
+     <div class="container" align="center">
 
            <?php
 
@@ -64,6 +72,7 @@
              $week = $_GET['week'];
 
              echo "<h2>List of all players that scored in week $week</h2><br>";
+             echo "<div class=\"grid\">";
 
              $playerArray = $pf->getAllScorers($week);
 
@@ -73,16 +82,14 @@
              }else {
                foreach ($playerArray as $id) {
                  $player = $pf->getById($id);
-                 echo " <hr><h4>" . $player . "</h4>";
+                 echo "<div class=\"item\">";
+                 echo "<h4>" . $player . "</h4>";
                  echo "<img src='playerHeadshots/". $player.".png' width='250px' hieght='250px'>  <br>";
+                 echo "</div>";
                }
              }
+             echo "</div>";
             ?>
-
-
-         </div>
-
-       </div>
 
      </div>
 

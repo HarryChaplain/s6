@@ -16,6 +16,16 @@
 
     <!-- Custom styles for this template -->
     <link href="css/logo-nav.css" rel="stylesheet">
+    <style media="screen">
+      .grid{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .item{
+        padding: 25px;
+      }
+    </style>
 
   </head>
 
@@ -45,7 +55,7 @@
     </nav>
 
     <!-- Page Content -->
-    <div class="container">
+    <div class="container" align="center">
       <h3>Admin Page</h3>
       <?php
 
@@ -78,14 +88,28 @@
            <option value="8">8</option>
        </select>
         <br>
-
+        <div class="grid">
          <?php
            foreach ($players as $p){
          ?>
-           <img src="playerHeadshots/<?php echo $p->name; ?>.png" width="100px" height="100px" ><label><?php echo $p->name; ?></label><input type="checkbox" name="playerid[]" id="checkbox" value="<?php echo $p->id; ?>"><br>
+
+
+          <div class="item">
+            <div class="">
+              <img src="playerHeadshots/<?php echo $p->name; ?>.png" width="100px" height="100px" />
+            </div>
+            <label><?php echo $p->name; ?></label>
+
+              <input type="checkbox" name="playerid[]" id="checkbox" value="<?php echo $p->id; ?>">
+
+
+          </div>
+
+
          <?php
            }
          ?>
+         </div>
          <br>
         <input class="btn btn-primary" type="submit" name="" value="Set scores">
       </form>
@@ -99,6 +123,6 @@
     <script src="vendor/popper/popper.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-  </body>
+  </body><br>
 
 </html>

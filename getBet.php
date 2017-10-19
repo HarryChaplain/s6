@@ -16,7 +16,16 @@
 
     <!-- Custom styles for this template -->
     <link href="css/logo-nav.css" rel="stylesheet">
-
+    <style media="screen">
+      .grid{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .item{
+        padding: 25px;
+      }
+    </style>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -53,8 +62,6 @@
       </div>
     </nav>
     <div class="container">
-      <div class="row">
-        <div class="col-10">
           <?php
 
               include 'init.php';
@@ -71,8 +78,9 @@
                 echo "<h3> Bet ID: ".$b->id ."</h3>";
                 echo "<p> Placed on: ".$b->datePlaced ." for bet week $b->betWeekId</p>";
                 echo "<h3> Selections: </h3>";
+                echo "<div class=\"grid\">";
                 foreach ($b->selections as $bs) {
-
+                  echo "<div class=\"item\">";
                   echo "<img src='playerHeadshots/". $bs->player->name.".png' width='250px' hieght='250px'>";
                   if ($bs->didScore == 0) {
                     echo "<p>" . $bs->player->name ;
@@ -81,21 +89,22 @@
                     echo "<p>" . $bs->player->name ;
                     echo "<font color='00FF00'> has scored</font>";
                   }
-
-
                   echo "</p>";
+                  echo "</div>";
+
+
+
                 }
-                echo "<br> <hr>";
+                echo "</div>";
+                echo "<br><br><hr><br><br>";
               }
+
 
               if (!$bets) {
                 echo "<h3> You have not placed any bets</h3>";
               }
            ?>
 
-        </div>
-
-      </div>
 
     </div>
 
