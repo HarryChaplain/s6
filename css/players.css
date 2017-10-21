@@ -1,0 +1,23 @@
+.modal-body .pull-left {
+    padding-right: 1em;
+}
+
+.modal-body .pull-right {
+    padding-left: 1em;
+}
+
+.modal-footer {
+    clear: both;
+}
+
+.modal-dialog {
+    background-color: white;
+}
+
+.modal-header {
+    text-align: center;
+}
+
+#lookman {
+    /* background-color: red; */
+}
