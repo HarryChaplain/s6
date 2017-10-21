@@ -17,6 +17,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/logo-nav.css" rel="stylesheet">
+    <link href="css/players.css" rel="stylesheet">
 
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/msdropdown/jquery.dd.min.js" type="text/javascript"></script>
@@ -72,7 +73,6 @@
      <div class="container" align="center">
 
         <?php
-
           include 'init.php';
 
           $db = getDB();
@@ -86,19 +86,18 @@
           $players = $pf->getAll();
 
           if (count($players) <=0) {
-
             echo "<h3>No players</h3>";
           }else {
             echo "<div class='row'>";
+            shuffle($players);
             foreach ($players as $p) {
             //  echo "<li class='thumbnail col-sm-3 col-xs-6'>";
             //  echo "<img src='playerHeadshots/". $p->name.".png'>";
             //  echo "</li>";
-
-
-
             echo "<div class=\"item\">";
-              echo "<div> <h4>" . $p->name . "</h4></div>";
+              echo "<div class='caption'> <h3>" . $p->name . "</h3>";
+              // echo "<a href='#lookman' data-toggle='modal' class='btn btn-primary' role='button'>Read More</a> ";
+              echo "</div>";
 
               if (($p->name) == "Ademola Lookman" ) {
                 echo "<a href='#lookman' data-toggle='modal'>";
@@ -107,8 +106,6 @@
               } else {
                 echo "<div><img src='playerHeadshots/". $p->name.".png'> </div>";
               }
-
-              
             echo "</div>";
             }
             echo "</div>"; // end of row
@@ -121,22 +118,23 @@
         <div class="modal-dialog">
           <br/><br/><br/>
           <div class="modal-header">
-            <button type="button" class="close glyphicon glyphicon-remove" data-dismiss="modal"></button>
-            <h3>Ademola Lookman Player Profile</h3>
+            <!-- <button type="button" class="close glyphicon glyphicon-remove" data-dismiss="modal"></button> -->
+            <h4>Ademola Lookman Player Profile</h4>
           </div>
           
           <div class="modal-body">
-          <p> <img src="playerHeadshots/" + <?php echo $p->name ?> + ".png" alt="Ademola Lookman" class="img-responsive pull-left"> Ademola Lookman, location, team, things, blah, djbfduihefdnkjnfdbef</p>
+          <img src="playerHeadshots/Ademola Lookman.png" alt="Ademola Lookman" class="img-responsive pull-left">
+          <p>
+          Lookman, born 1997, is a Premier League left wing for Everton on contract until June 2021. He also plays for the England national under-21 team.
+          </p>
           </div>
           
           <div class="modal-footer">
+            <a class="btn btn-primary" href="https://en.wikipedia.org/wiki/Ademola_Lookman" target="_blank">Read More</a> <br/>
             <button class="btn btn-primary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
-
-
-
 
     <!-- Bootstrap core JavaScript -->
     <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
