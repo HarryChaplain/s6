@@ -71,35 +71,71 @@
 
      <div class="container" align="center">
 
-           <?php
+        <?php
 
-             include 'init.php';
+          include 'init.php';
 
-             $db = getDB();
-             $pf = new PlayerFactory($db);
-             $playerArray = [];
-             $week = $_GET['week'];
+          $db = getDB();
+          $pf = new PlayerFactory($db);
+          $playerArray = [];
+          $week = $_GET['week'];
 
-             echo "<h2>List of All Players</h2>";
-             echo "<div class=\"grid\">";
+          echo "<h2>List of All Players</h2>";
+          echo "<div class=\"grid\">";
 
-             $players = $pf->getAll();
+          $players = $pf->getAll();
 
-             if (count($players) <=0) {
+          if (count($players) <=0) {
 
-               echo "<h3>No players</h3>";
-             }else {
-               foreach ($players as $p) {
+            echo "<h3>No players</h3>";
+          }else {
+            echo "<div class='row'>";
+            foreach ($players as $p) {
+            //  echo "<li class='thumbnail col-sm-3 col-xs-6'>";
+            //  echo "<img src='playerHeadshots/". $p->name.".png'>";
+            //  echo "</li>";
 
-                 echo "<div class=\"item\">";
-                 echo "<div> <h4>" . $p->name . "</h4></div>";
-                 echo "<div><img src='playerHeadshots/". $p->name.".png' width='250px' hieght='250px'> </div>";
-                 echo "</div>";
-               }
-             }
-             echo "</div>";
-            ?>
-         </div>
+
+
+            echo "<div class=\"item\">";
+              echo "<div> <h4>" . $p->name . "</h4></div>";
+
+              if (($p->name) == "Ademola Lookman" ) {
+                echo "<a href='#lookman' data-toggle='modal'>";
+                echo "<div><img src='playerHeadshots/". $p->name.".png'> </div>";
+                echo "</a>";
+              } else {
+                echo "<div><img src='playerHeadshots/". $p->name.".png'> </div>";
+              }
+
+              
+            echo "</div>";
+            }
+            echo "</div>"; // end of row
+          }
+          echo "</div>";
+        ?>
+      </div>
+
+      <div id="lookman" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+          <br/><br/><br/>
+          <div class="modal-header">
+            <button type="button" class="close glyphicon glyphicon-remove" data-dismiss="modal"></button>
+            <h3>Ademola Lookman Player Profile</h3>
+          </div>
+          
+          <div class="modal-body">
+          <p> <img src="playerHeadshots/" + <?php echo $p->name ?> + ".png" alt="Ademola Lookman" class="img-responsive pull-left"> Ademola Lookman, location, team, things, blah, djbfduihefdnkjnfdbef</p>
+          </div>
+          
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+
+
 
 
     <!-- Bootstrap core JavaScript -->
