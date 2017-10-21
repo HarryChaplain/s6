@@ -25,9 +25,6 @@
     </nav>
     <div class="container">
       <?php
-
-      //var_dump($_POST); #information from <form action="register.php" method="post">
-
       include '../init.php';
 
       $cm = new CustomerFactory(getDB());
@@ -38,28 +35,26 @@
       );
 
       if ($cm->byUsername($nu->username)) {
-          echo "<h3>username already in use</h3>";
+          $registermessage = "Username is already in use";
       } else {
           if ($nu->isOldEnough($nu->dob)) {
 
               if ($nu->validPassword($_POST['newPassword2'])) {
                   $cm->save($nu);
                   $currentUser = $cm->byUsername($_POST['username'])[0];
-                  echo "<h3>User Created</h3>";
+                  $registermessage = "User Created";
               } else {
-                  echo "<h3>Password not valid</h3>";
+                  $registermessage = "Password is not valid";
               }
 
           } else {
-              echo "<h3>Not old enough</h3>";
+              $registermessage = "Not old enough";
           }
+          echo $registermessage;
       }
-
-
-
       ?>
       <br>
-      <a class="btn btn-primary" href="../loginPage.php">Back</a>
+      <!-- <a class="btn btn-primary" href="../loginPage.php">Back</a> -->
     </div> <!-- /container -->
 
 

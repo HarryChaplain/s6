@@ -47,6 +47,7 @@
             <label for="dob" class="sr-only">DOB</label>
             <input type="date" id="dob" class="form-control" name="newDOB" placeholder="Date of Birth" required>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+            <h3> <?php echo $registermessage ?></h3>
           </form>
         </div>
       </div>
