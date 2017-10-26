@@ -46,9 +46,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="index.php">Home
-                <span class="sr-only">(current)</span>
               </a>
             </li>
               <a class="nav-link" href=<?php echo "getBet.php?id=" . $_SESSION['id'];  ?>>My Bets</a>
@@ -70,7 +69,12 @@
       </div>
     </nav>
 
-     <div class="container" align="center">
+    <div align="center">
+     <div class="container"  align="center">
+       <div class="">
+
+
+
 
         <?php
           include 'init.php';
@@ -81,27 +85,30 @@
           $week = $_GET['week'];
 
           echo "<h2>List of All Players</h2>";
-          echo "<div class=\"grid\">";
+          echo "<div class='vertical-center'>";
+          echo "<div class=\"grid\" >";
 
           $players = $pf->getAll();
 
           if (count($players) <=0) {
             echo "<h3>No players</h3>";
           }else {
-            echo "<div class='row'>";
+            echo "<div class='row vertical-center'>";
             shuffle($players);
             foreach ($players as $p) {
             //  echo "<li class='thumbnail col-sm-3 col-xs-6'>";
             //  echo "<img src='playerHeadshots/". $p->name.".png'>";
             //  echo "</li>";
             ?>
-            <div class=\"item\">
-              <div class='caption'> <h3><?php echo $p->name ?></h3>
+            <div class="item vertical-align" align="center">
+
               <!-- "<a href='#lookman' data-toggle='modal' class='btn btn-primary' role='button'>Read More</a> "; -->
-              </div>
+
               <a href='#player-<?php echo $p->id ?>' data-toggle='modal'>
-                <img src='playerHeadshots/<?php echo $p->name ?>.png'>
+                <img src='playerHeadshots/<?php echo $p->name ?>.png' width="100px" height="100px" >
+
               </a>
+              <h3><?php echo $p->name ?></h3>
         <div id="player-<?php echo $p->id ?>" class="modal fade" tabindex="-1">
         <div class="modal-dialog">
           <div class="modal-header">
@@ -120,36 +127,20 @@
           </div>
         </div>
         </div>
-      </div>
+        </div>
       <?php
             }
-            echo "</div>"; // end of row
+            echo "</div>";
+            echo "</div>";// end of row
           }
           echo "</div>";
         ?>
       </div>
 
-      <div id="lookman" class="modal fade" tabindex="-1">
-        <div class="modal-dialog">
-          <br/><br/><br/>
-          <div class="modal-header">
-            <!-- <button type="button" class="close glyphicon glyphicon-remove" data-dismiss="modal"></button> -->
-            <h4>Ademola Lookman Player Profile</h4>
-          </div>
-          
-          <div class="modal-body">
-          <img src="playerHeadshots/Ademola Lookman.png" alt="Ademola Lookman" class="img-responsive pull-left">
-          <p>
-          Lookman, born 1997, is a Premier League left wing for Everton on contract until June 2021. He also plays for the England national under-21 team.
-          </p>
-          </div>
-          
-          <div class="modal-footer">
-            <a class="btn btn-primary" href="https://en.wikipedia.org/wiki/Ademola_Lookman" target="_blank">Read More</a> <br/>
-            <button class="btn btn-primary" data-dismiss="modal">Close</button>
-          </div>
-        </div>
       </div>
+         </div>
+
+
 
     <!-- Bootstrap core JavaScript -->
     <!-- <script src="vendor/jquery/jquery.min.js"></script> -->

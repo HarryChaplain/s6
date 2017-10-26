@@ -17,6 +17,13 @@
 .modal-header {
     text-align: center;
 }
+.img{
+  width: 100px;
+}
+
+.item {
+  flex-grow: 1;
+}
 
 #lookman {
     /* background-color: red; */
