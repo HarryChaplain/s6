@@ -94,19 +94,34 @@
             //  echo "<li class='thumbnail col-sm-3 col-xs-6'>";
             //  echo "<img src='playerHeadshots/". $p->name.".png'>";
             //  echo "</li>";
-            echo "<div class=\"item\">";
-              echo "<div class='caption'> <h3>" . $p->name . "</h3>";
-              // echo "<a href='#lookman' data-toggle='modal' class='btn btn-primary' role='button'>Read More</a> ";
-              echo "</div>";
-
-              if (($p->name) == "Ademola Lookman" ) {
-                echo "<a href='#lookman' data-toggle='modal'>";
-                echo "<div><img src='playerHeadshots/". $p->name.".png'> </div>";
-                echo "</a>";
-              } else {
-                echo "<div><img src='playerHeadshots/". $p->name.".png'> </div>";
-              }
-            echo "</div>";
+            ?>
+            <div class=\"item\">
+              <div class='caption'> <h3><?php echo $p->name ?></h3>
+              <!-- "<a href='#lookman' data-toggle='modal' class='btn btn-primary' role='button'>Read More</a> "; -->
+              </div>
+              <a href='#player-<?php echo $p->id ?>' data-toggle='modal'>
+                <img src='playerHeadshots/<?php echo $p->name ?>.png'>
+              </a>
+        <div id="player-<?php echo $p->id ?>" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-header">
+            <!-- <button type="button" class="close glyphicon glyphicon-remove" data-dismiss="modal"></button> -->
+            <h4> <?php echo $p->name ?>  Player Profile</h4>
+          </div>
+          <div class="modal-body">
+            <img src="playerHeadshots/<?php echo $p->name ?>.png" alt="<?php echo $p->name ?>" class="img-responsive pull-left">
+            <p>
+            <?php echo $p->name ?> is a Premier League footballer who loves football.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-primary" href="https://en.wikipedia.org/wiki/<?php echo $p->name ?>" target="_blank">Read More</a> <br/>
+            <button class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        </div>
+      </div>
+      <?php
             }
             echo "</div>"; // end of row
           }
